@@ -26,7 +26,8 @@ const MaskInput = (props, ref) => {
 
 MaskInput.propTypes = {
   onChange: PropTypes.func.isRequired,
-  mask: PropTypes.string,
+  mask: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 export default React.forwardRef(MaskInput);
