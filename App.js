@@ -58,6 +58,7 @@ class App extends React.Component {
           <MoneyInput
             style={styles.input}
             value={moneyValue}
+            max={1000000}
             onChange={this.handleChangeMoneyInput}
           />
         </View>

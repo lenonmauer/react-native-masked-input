@@ -2,23 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { TextInput } from 'react-native';
 
-import { formatNumberToCurrency, formatCurrencyToNumber, getDefaultOptions } from './utils';
+import {
+  formatNumberToCurrency,
+  formatCurrencyToNumber,
+  getDefaultOptions,
+  getValueInRange,
+} from './utils';
 
-const MoneyInput = (props, ref) => {
-  const { value } = props;
+const MoneyInput = (props) => {
+  const { value, min, max } = props;
   const options = getDefaultOptions(props);
   const initialValue = formatNumberToCurrency(value, options);
 
   function handleChange(text) {
     const { onChange } = props;
     const numberValue = formatCurrencyToNumber(text, options.precision);
-    onChange(numberValue);
+    const finalValue = getValueInRange(numberValue, min, max);
+    onChange(finalValue);
   }
 
   return (
     <TextInput
       {...props}
-      ref={ref}
       keyboardType="number-pad"
       value={initialValue}
       onChangeText={handleChange}
@@ -27,12 +32,21 @@ const MoneyInput = (props, ref) => {
 };
 
 MoneyInput.propTypes = {
+  ...TextInput.propTypes,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.number.isRequired,
   delimiter: PropTypes.string,
   separator: PropTypes.string,
   prefix: PropTypes.string,
   precision: PropTypes.number,
+  min: PropTypes.number,
+  max: PropTypes.number,
+};
+
+MoneyInput.defaultProps = {
+  ...TextInput.defaultProps,
+  min: undefined,
+  max: undefined,
 };
 
 MoneyInput.defaultProps = {
@@ -42,4 +56,4 @@ MoneyInput.defaultProps = {
   precision: 2,
 };
 
-export default React.forwardRef(MoneyInput);
+export default MoneyInput;
