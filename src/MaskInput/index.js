@@ -4,7 +4,7 @@ import { TextInput } from 'react-native';
 
 import { applyMask } from './utils';
 
-const MaskInput = (props, ref) => {
+const MaskInput = (props) => {
   const { value, mask, onChange } = props;
   const initialValue = applyMask(value, mask);
 
@@ -16,7 +16,6 @@ const MaskInput = (props, ref) => {
   return (
     <TextInput
       {...props}
-      ref={ref}
       keyboardType="number-pad"
       value={initialValue}
       onChangeText={handleChange}
@@ -25,9 +24,14 @@ const MaskInput = (props, ref) => {
 };
 
 MaskInput.propTypes = {
+  ...TextInput.propTypes,
   onChange: PropTypes.func.isRequired,
   mask: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
 };
 
-export default React.forwardRef(MaskInput);
+MaskInput.defaultProps = {
+  ...TextInput.defaultProps,
+};
+
+export default MaskInput;
