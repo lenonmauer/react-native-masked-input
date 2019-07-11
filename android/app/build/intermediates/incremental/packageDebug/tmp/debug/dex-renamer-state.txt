@@ -1,4 +1,0 @@
-#Wed Jul 10 17:21:35 BRT 2019
-base.0=C\:\\Users\\data52858\\Desktop\\projects\\react-native-masked-input\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
-path.0=classes.dex
-renamed.0=classes.dex
