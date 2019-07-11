@@ -35,8 +35,7 @@ MoneyInput.propTypes = {
   ...TextInput.propTypes,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.number.isRequired,
-  delimiter: PropTypes.string,
-  separator: PropTypes.string,
+  locale: PropTypes.string,
   prefix: PropTypes.string,
   precision: PropTypes.number,
   min: PropTypes.number,
@@ -47,6 +46,9 @@ MoneyInput.defaultProps = {
   ...TextInput.defaultProps,
   min: undefined,
   max: undefined,
+  prefix: 'R$ ',
+  precision: 2,
+  locale: 'pt-br',
 };
 
 MoneyInput.defaultProps = {
