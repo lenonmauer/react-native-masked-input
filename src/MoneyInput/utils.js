@@ -1,19 +1,18 @@
-export const getDefaultOptions = ({ delimiter, separator, prefix, precision, locale }) => ({
-  delimiter: delimiter || ',',
-  separator: separator || '.',
-  prefix: prefix || 'R$ ',
+export const getDefaultOptions = ({ currencyStyle, precision, locale }) => ({
+  currencyStyle: currencyStyle || 'BRL',
   precision: precision || 2,
   locale: locale || 'pt-br',
 });
 
 export const formatNumberToCurrency = (value = 0, options) => {
-  const { prefix, precision, locale } = options;
-  const currencyValue = value.toLocaleString(locale, {
+  const { currencyStyle, precision, locale } = options;
+
+  return value.toLocaleString(locale, {
     minimumFractionDigits: precision,
     maximumFractionDigits: precision,
+    style: 'currency',
+    currency: currencyStyle,
   });
-
-  return `${prefix}${currencyValue}`;
 };
 
 export const formatCurrencyToNumber = (value, precision) => {
