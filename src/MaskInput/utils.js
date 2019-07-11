@@ -1,4 +1,4 @@
-export const applyMask = (value, mask) => {
+export const applyMask = (value = '', mask) => {
   let newStr = '';
   const maskLength = mask.length;
   const valueChars = value

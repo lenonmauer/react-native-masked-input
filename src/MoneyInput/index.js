@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TextInput } from 'react-native';
+import { TextInput, Platform } from 'react-native';
 
 import {
   formatNumberToCurrency,
@@ -8,6 +8,10 @@ import {
   getDefaultOptions,
   getValueInRange,
 } from './utils';
+
+if (Platform.OS === 'android') {
+  require('intl');
+}
 
 const MoneyInput = (props) => {
   const { value, min, max } = props;
@@ -34,9 +38,11 @@ const MoneyInput = (props) => {
 MoneyInput.propTypes = {
   ...TextInput.propTypes,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.number.isRequired,
-  locale: PropTypes.string,
-  currencyStyle: PropTypes.string,
+  value: PropTypes.number,
+  delimiter: PropTypes.string,
+  separator: PropTypes.string,
+  prefix: PropTypes.string,
+  suffix: PropTypes.string,
   precision: PropTypes.number,
   min: PropTypes.number,
   max: PropTypes.number,
@@ -44,11 +50,14 @@ MoneyInput.propTypes = {
 
 MoneyInput.defaultProps = {
   ...TextInput.defaultProps,
-  locale: 'pt-br',
-  currencyStyle: 'BRL',
+  value: '',
+  delimiter: ',',
+  separator: '.',
+  prefix: 'R$ ',
+  suffix: '',
   precision: 2,
-  min: undefined,
-  max: undefined,
+  min: 0,
+  max: 0,
 };
 
 export default MoneyInput;

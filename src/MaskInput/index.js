@@ -27,7 +27,6 @@ MaskInput.propTypes = {
   ...TextInput.propTypes,
   onChange: PropTypes.func.isRequired,
   mask: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
 };
 
 MaskInput.defaultProps = {
