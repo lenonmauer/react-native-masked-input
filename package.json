@@ -10,7 +10,7 @@
   "devDependencies": {
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-native": "^0.60.0",
+    "react-native": "^0.62.3",
     "babel-eslint": "^10.0.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
